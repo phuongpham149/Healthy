@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Healthy</string>
+    <string name="textview_splash_HEA">HEA</string>
+    <string name="textview_splash_THY">THY</string>
+    <string name="textview_header_title">TUTORIAL</string>
+    <string name="textview_main_title">TUTORIAL</string>
+
+    <string-array name="slide_tutorial">
+        <item>You can detect drug to get some information about it</item>
+        <item>My app give you all hospital in vietnam about information and map</item>
+        <item>My app give you some useful information about drug</item>
+        <item>you can save some informations which you like</item>
+        <item>you can setting to my app remind you</item>
+    </string-array>
+</resources>
