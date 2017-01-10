@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hospital_detail_background"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/map1"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rl_info_hospital_item_hospital_detail_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/rl_info_hospital_margin_left"
+        android:layout_marginTop="@dimen/rl_info_hospital_margin_top"
+        android:background="@color/rl_info_hospital_background">
+
+        <TextView
+            android:id="@+id/tvNameHospital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/textview_name_hospital_item_detail_hospital_margin_left"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textview_name_hospital_item_detail_hospital_size" />
+
+        <TextView
+            android:id="@+id/tvPhoneHospital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNameHospital"
+            android:layout_marginStart="@dimen/textview_name_hospital_item_detail_hospital_margin_left"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textview_phone_hospital_item_detail_hospital_size" />
+
+        <ImageView
+            android:id="@+id/imgDirection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/imageview_direction_item_hospital_detail_margin_right"
+            android:contentDescription="@null"
+            android:paddingBottom="@dimen/imageview_direction_padding_bottom_item_hospital_detail"
+            android:src="@drawable/ic_directions" />
+    </RelativeLayout>
+
+</RelativeLayout>

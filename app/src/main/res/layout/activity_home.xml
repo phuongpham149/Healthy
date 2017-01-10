@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.app.FragmentTabHost xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tabhost"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <com.example.phuong.healthy.views.HeaderOptionsView
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:background="@color/background_header"
+        app:title="@string/textview_home_title"></com.example.phuong.healthy.views.HeaderOptionsView>
 
-        <TabWidget
-            android:id="@android:id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" />
+    <FrameLayout
+        android:id="@+id/flContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tabs"
+        android:layout_below="@+id/header" />
 
-        <FrameLayout
-            android:id="@android:id/tabcontent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </RelativeLayout>
-</android.support.v4.app.FragmentTabHost>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_home_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/tab_home_indicator"
+        app:tabIndicatorColor="@color/background_tab"
+        app:tabIndicatorHeight="@dimen/tab_home_divide"
+        app:tabMode="fixed" />
+</RelativeLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/item_provice_margin"
+    card_view:cardCornerRadius="@dimen/item_provice_corner">
+
+    <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/menu_wrapper"
+            android:layout_width="@dimen/item_provice_menu_wrapper_width"
+            android:layout_height="match_parent"
+            android:background="@color/item_provice_menu_wrapper_background"
+            android:gravity="center_vertical"
+            android:weightSum="2">
+
+            <CheckBox
+                android:id="@+id/imgFav"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/item_fav_margin_left"
+                android:layout_weight="1"
+                android:button="@drawable/item_fav_background"
+                android:gravity="center" />
+
+            <ImageView
+                android:id="@+id/imgDetail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/item_detail_background"
+                android:contentDescription="@null"
+                android:gravity="center"
+                android:src="@drawable/ic_detail" />
+        </LinearLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <com.example.phuong.healthy.views.CircleImage
+                android:id="@+id/imgIcon"
+                android:layout_width="@dimen/imageview_item_provice_width"
+                android:layout_height="@dimen/imageview_item_provice_height"
+                android:layout_marginBottom="@dimen/imageview_item_provice_margin_top"
+                android:layout_marginStart="@dimen/imageview_item_provice_margin_left"
+                android:layout_marginTop="@dimen/imageview_item_provice_margin_top"
+                android:contentDescription="@null"
+                android:padding="@dimen/imageview_item_provice_padding"
+                android:src="@drawable/ic_hospital" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/textview_item_provice_margin_left"
+                android:layout_marginTop="@dimen/textview_item_provice_margin_top"
+                android:layout_toEndOf="@+id/imgIcon"
+                android:padding="@dimen/textview_item_provice_padding"
+                android:text="@string/textview_text_provice"
+                android:textColor="@color/textview_item_provice"
+                android:textSize="@dimen/textview_name_item_provice_size" />
+        </RelativeLayout>
+
+    </com.daimajia.swipe.SwipeLayout>
+</android.support.v7.widget.CardView>
+
