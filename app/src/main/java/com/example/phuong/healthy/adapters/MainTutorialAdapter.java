@@ -17,11 +17,9 @@ public class MainTutorialAdapter extends FragmentPagerAdapter {
     private int[] mImages = {
             R.drawable.tutorial1, R.drawable.tutorial3, R.drawable.tutorial2
     };
-    private String[] mContent = {"Detect drug to get information about it",
-            "Information about hospital in vietnam",
-            "Some useful information about drug",
-            "Some informations which you like",
-            "Setting to remind you"};
+    private String[] mContent = {"Detect Drug",
+            "Hospital",
+            "Drug"};
     private Handler mHandler = new Handler();
     private int mCount = mImages.length;
 

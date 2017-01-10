@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <EditText
+        android:id="@+id/edtSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/edt_search_provice_margin"
+        android:background="@drawable/hospital_detail_background"
+        android:drawableEnd="@drawable/ic_search_edt"
+        android:hint="@string/edt_search"
+        android:textSize="@dimen/edt_search_size" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewHospital"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

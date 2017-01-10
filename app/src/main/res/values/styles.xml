@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="textview_item_drug_detail">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/textview_manufacter_item_detail_drug</item>
+        <item name="android:textSize">@dimen/textview_item_drug_detail_size</item>
+        <item name="android:padding">@dimen/textview_item_drug_detail_padding</item>
+    </style>
+
+    <style name="edittext_item_setting">
+        <item name="android:textColor">@color/textview_manufacter_item_detail_drug</item>
+        <item name="android:textSize">@dimen/textview_item_drug_detail_size</item>
+        <item name="android:padding">@dimen/textview_item_drug_detail_padding</item>
+    </style>
 </resources>

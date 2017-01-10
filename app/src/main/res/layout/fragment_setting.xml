@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/scrollview_item_drug_detail_margin"
+    android:background="@drawable/hospital_detail_background">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rl_info_remind_setting"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rl_item_setting_height"
+            android:layout_margin="@dimen/rl_item_setting_margin"
+            android:layout_marginTop="@dimen/rl_item_setting_margin_top"
+            android:background="@color/ll_item_drug_detail_background">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/textview_item_drug_detail_padding"
+                android:text="@string/textview_remind_item_setting"
+                android:textColor="@color/background_tab"
+                android:textSize="@dimen/textview_item_drug_detail_size"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageview_remind_down_item_setting"
+                android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
+                android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_more" />
+
+            <ImageView
+                android:id="@+id/imageview_remind_up_item_setting"
+                android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
+                android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_up"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_remind_setting"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rl_item_setting_height"
+            android:layout_below="@+id/rl_info_remind_setting"
+            android:layout_margin="@dimen/rl_item_setting_margin"
+            android:layout_marginTop="@dimen/rl_item_setting_margin_top"
+            android:background="@color/ll_item_drug_detail_background"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/textview_item_drug_detail_padding"
+                android:text="@string/textview_remind_drug_item_setting"
+                android:textColor="@color/textview_manufacter_item_detail_drug"
+                android:textSize="@dimen/textview_item_drug_detail_size"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/checkbox_turn_on_remind_drug"
+                android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
+                android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
+                android:button="@drawable/item_turn_on_remind" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_set_time_item_setting"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ll_infor_effect_item_drug_detail_height"
+            android:layout_below="@id/rl_remind_setting"
+            android:layout_margin="@dimen/ll_item_drug_detail_margin"
+            android:layout_marginTop="@dimen/rl_infor_effect_item_drug_detail_margin_top"
+            android:background="@color/ll_item_drug_detail_background"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvSetTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/textview_set_time_margin_left"
+                android:layout_marginTop="@dimen/textview_set_time_margin_top"
+                android:text="@string/textview_set_time"
+                android:textColor="@color/textview_manufacter_item_detail_drug"
+                android:textSize="@dimen/textview_item_drug_detail_size" />
+
+            <TextView
+                android:id="@+id/tvHour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvSetTime"
+                android:layout_marginStart="@dimen/textview_set_time_margin_left"
+                android:layout_marginTop="@dimen/textview_set_time_margin_top"
+                android:text="@string/textview_time_remind_item_setting"
+                android:textColor="@color/textview_manufacter_item_detail_drug"
+                android:textSize="@dimen/textview_item_drug_detail_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvBetween"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvSetTime"
+                android:layout_marginStart="@dimen/textview_set_time_margin_left"
+                android:layout_marginTop="@dimen/textview_set_time_margin_top"
+                android:layout_toEndOf="@+id/tvHour"
+                android:text="@string/textview_b_remind_item_setting"
+                android:textColor="@color/textview_manufacter_item_detail_drug"
+                android:textSize="@dimen/textview_item_drug_detail_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvSetTime"
+                android:layout_marginStart="@dimen/textview_set_time_margin_left"
+                android:layout_marginTop="@dimen/textview_set_time_margin_top"
+                android:layout_toEndOf="@+id/tvBetween"
+                android:text="@string/textview_min_remind_item_setting"
+                android:textColor="@color/textview_manufacter_item_detail_drug"
+                android:textSize="@dimen/textview_item_drug_detail_size"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_healthy_setting"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rl_item_setting_height"
+            android:layout_below="@+id/rl_set_time_item_setting"
+            android:layout_margin="@dimen/rl_item_setting_margin"
+            android:layout_marginTop="@dimen/rl_item_setting_margin_top"
+            android:background="@color/ll_item_drug_detail_background"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/textview_item_drug_detail_padding"
+                android:text="@string/textview_remind_healthy_item_setting"
+                android:textColor="@color/textview_manufacter_item_detail_drug"
+                android:textSize="@dimen/textview_item_drug_detail_size"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/checkbox_turn_on_healthy_setting"
+                android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
+                android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
+                android:button="@drawable/item_turn_on_remind" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rl_item_setting_height"
+            android:layout_below="@+id/rl_healthy_setting"
+            android:layout_margin="@dimen/rl_item_setting_margin"
+            android:layout_marginTop="@dimen/rl_item_setting_margin_top"
+            android:background="@color/ll_item_drug_detail_background">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/textview_item_drug_detail_padding"
+                android:text="@string/textview_feedback_item_setting"
+                android:textColor="@color/background_tab"
+                android:textSize="@dimen/textview_item_drug_detail_size"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageview_feedback_down_item_drug_detail"
+                android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
+                android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_more" />
+
+            <ImageView
+                android:id="@+id/imageview_feedback_up_item_drug_detail"
+                android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
+                android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_up"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_infor_feedback_item_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_feedback"
+            android:layout_margin="@dimen/ll_item_drug_detail_margin"
+            android:layout_marginTop="@dimen/rl_infor_effect_item_drug_detail_margin_top"
+            android:background="@color/ll_item_drug_detail_background"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/edtName"
+                style="@style/edittext_item_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/edt_feedback_item_setting"
+                android:background="@drawable/hospital_detail_background"
+                android:hint="@string/edt_name_feedback_item_setting" />
+
+            <EditText
+                android:id="@+id/edtEmail"
+                style="@style/edittext_item_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edtName"
+                android:layout_margin="@dimen/edt_feedback_item_setting"
+                android:background="@drawable/hospital_detail_background"
+                android:hint="@string/edt_email_feedback_item_setting" />
+
+            <EditText
+                android:id="@+id/edtFeedback"
+                style="@style/edittext_item_setting"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@+id/edtEmail"
+                android:layout_margin="@dimen/edt_feedback_item_setting"
+                android:background="@drawable/hospital_detail_background"
+                android:hint="@string/edt_content_feedback_item_setting" />
+
+            <TextView
+                android:id="@+id/btnSend"
+                android:layout_width="@dimen/textview_btn_send_feedback_item_setting_width"
+                android:layout_height="@dimen/textview_btn_send_feedback_item_setting_height"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/edtFeedback"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/textview_btn_send_feedback_item_setting_margin_top"
+                android:background="@color/background_tab"
+                android:gravity="center"
+                android:text="@string/textview_btn_send_feedback"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textview_btn_send_feedback_size"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

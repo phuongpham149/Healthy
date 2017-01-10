@@ -7,4 +7,26 @@
     <color name="item_tutorial_background">#F4F4F4</color>
     <color name="textview_tutorial_background">#0A458A</color>
     <color name="background_header">#073E8F</color>
+    <color name="tab_home_divide">#093565</color>
+    <color name="background_tab">#093565</color>
+    <color name="tab_home_indicator">#0A458A</color>
+    <color name="textview_item_provice">#093565</color>
+    <color name="tutorial_background">#0C4386</color>
+    <color name="item_provice_menu_wrapper_background">#F2F2F2</color>
+    <color name="item_detail_provice_menu_wrapper_background_pressed">#D7D7D7</color>
+    <color name="ll_item_drug_detail_background">#DEDEDE</color>
+    <color name="textview_manufacter_item_detail_drug">#1B1B1B</color>
+    <color name="textview_fav_color">#093565</color>
+    <color name="rl_info_hospital_background">#D7D7D7</color>
+
+    <color name="primary">#00BCD4</color>
+    <color name="primary_dark">#0097A7</color>
+    <color name="primary_light">#B2EBF2</color>
+    <color name="accent">#607D8B</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="imageview_dialog_background">#DEDEDE</color>
+    <color name="btn_dialog_text_color">#093565</color>
+    <color name="circle_image_color">#BAB399</color>
+
 </resources>
