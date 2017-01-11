@@ -89,7 +89,6 @@ public class SqlLiteDbHelper extends SQLiteOpenHelper {
         File f = new File(mContext.getApplicationInfo().dataDir + DB_PATH_SUFFIX);
         if (!f.exists())
             f.mkdir();
-
         OutputStream myOutput = new FileOutputStream(outFileName);
 
         byte[] buffer = new byte[1024];
@@ -97,7 +96,6 @@ public class SqlLiteDbHelper extends SQLiteOpenHelper {
         while ((length = myInput.read(buffer)) > 0) {
             myOutput.write(buffer, 0, length);
         }
-
         myOutput.flush();
         myOutput.close();
         myInput.close();
@@ -110,7 +108,6 @@ public class SqlLiteDbHelper extends SQLiteOpenHelper {
         if (!dbFile.exists()) {
             try {
                 CopyDataBaseFromAsset();
-                Log.d("tag", "Copying sucess from Assets folder");
             } catch (IOException e) {
                 throw new RuntimeException("Error creating source database", e);
             }
