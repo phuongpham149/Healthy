@@ -75,6 +75,7 @@
                 android:layout_marginStart="@dimen/textview_item_provice_margin_left"
                 android:layout_marginTop="@dimen/textview_item_provice_margin_top"
                 android:layout_toEndOf="@+id/imgIcon"
+                android:maxLines="1"
                 android:padding="@dimen/textview_item_provice_padding"
                 android:text="@string/textview_text_provice"
                 android:textColor="@color/textview_item_provice"

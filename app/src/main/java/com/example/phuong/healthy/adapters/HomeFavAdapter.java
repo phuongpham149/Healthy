@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.example.phuong.healthy.R;
+import com.example.phuong.healthy.databases.SqlLiteDbHelper;
 import com.example.phuong.healthy.models.Fav;
+import com.example.phuong.healthy.utils.Constant;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -24,11 +26,15 @@ public class HomeFavAdapter extends RecyclerView.Adapter<HomeFavAdapter.MyViewHo
     private List<Fav> mFavs;
     private Context mContext;
     private onItemFavClickListener mListener;
+    private SqlLiteDbHelper mSqlLiteDbHelper;
 
     public HomeFavAdapter(List<Fav> mFavs, Context mContext, onItemFavClickListener listener) {
         this.mFavs = mFavs;
         this.mContext = mContext;
         mListener = listener;
+
+        mSqlLiteDbHelper = new SqlLiteDbHelper(mContext);
+        mSqlLiteDbHelper.openDataBase();
     }
 
     @Override
@@ -40,7 +46,7 @@ public class HomeFavAdapter extends RecyclerView.Adapter<HomeFavAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        Fav fav = mFavs.get(position);
+        final Fav fav = mFavs.get(position);
         holder.mTvTitle.setText(fav.getName());
         Picasso.with(mContext)
                 .load(fav.getImage())
@@ -57,6 +63,18 @@ public class HomeFavAdapter extends RecyclerView.Adapter<HomeFavAdapter.MyViewHo
             @Override
             public void onClick(View view) {
                 Toast.makeText(mContext, "Delete successful", Toast.LENGTH_SHORT).show();
+                mSqlLiteDbHelper.delFav(fav.getIdItem(), fav.getType());
+                if (fav.getType() == Constant.TYPE_DRUG) {
+                    mSqlLiteDbHelper.updateItemDrugUnFav(fav.getIdItem());
+                }
+                if (fav.getType() == Constant.TYPE_HOSPITAL) {
+                    mSqlLiteDbHelper.updateItemHospitalUnFav(fav.getIdItem());
+                }
+                if (fav.getType() == Constant.TYPE_PROVICE) {
+                    mSqlLiteDbHelper.updateItemProviceUnFav(fav.getIdItem());
+                }
+                mFavs.remove(position);
+                notifyDataSetChanged();
             }
         });
 

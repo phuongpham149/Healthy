@@ -5,8 +5,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
+import com.example.phuong.healthy.models.Drug;
+import com.example.phuong.healthy.models.Fav;
 import com.example.phuong.healthy.models.Hospital;
 import com.example.phuong.healthy.models.Provices;
 
@@ -51,13 +52,78 @@ public class SqlLiteDbHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
         }
         while (!cursor.isAfterLast()) {
-            Provices provices = new Provices(cursor.getInt(0), cursor.getString(2), cursor.getString(1));
+            Provices provices = new Provices(cursor.getInt(0), cursor.getString(2), cursor.getString(1), cursor.getInt(3));
             mProvices.add(provices);
             cursor.moveToNext();
         }
         cursor.close();
         db.close();
         return mProvices;
+    }
+
+    public List<Drug> GetDrugs() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Drug> mDrugs = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM drug", null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        while (!cursor.isAfterLast()) {
+            Drug drug = new Drug(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getInt(7));
+            mDrugs.add(drug);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        db.close();
+        return mDrugs;
+    }
+
+    public Drug getDrugDetail(int idDrug) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * from drug WHERE id = ");
+        sql.append(idDrug);
+        Cursor cursor = db.rawQuery(sql.toString(), null);
+        if (cursor != null && cursor.moveToFirst()) {
+            Drug drug = new Drug(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getInt(7));
+            cursor.close();
+            db.close();
+            return drug;
+
+        }
+        return null;
+    }
+
+    public Hospital getHospitalDetail(int idHospital) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * from hospital WHERE id = ");
+        sql.append(idHospital);
+        Cursor cursor = db.rawQuery(sql.toString(), null);
+        if (cursor != null && cursor.moveToFirst()) {
+            Hospital hospital = new Hospital(cursor.getInt(0), cursor.getString(3), cursor.getString(1), cursor.getString(2), cursor.getString(4), cursor.getInt(5), cursor.getString(6), cursor.getInt(7));
+            cursor.close();
+            db.close();
+            return hospital;
+
+        }
+        return null;
+    }
+
+    public Provices getProviceDetail(int idProvice) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * from provices WHERE id = ");
+        sql.append(idProvice);
+        Cursor cursor = db.rawQuery(sql.toString(), null);
+        if (cursor != null && cursor.moveToFirst()) {
+            Provices provices = new Provices(cursor.getInt(0), cursor.getString(2), cursor.getString(1), cursor.getInt(3));
+            cursor.close();
+            db.close();
+            return provices;
+
+        }
+        return null;
     }
 
     public List<Hospital> GetHospitalByIdProvice(int idProvice) {
@@ -71,13 +137,81 @@ public class SqlLiteDbHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
         }
         while (!cursor.isAfterLast()) {
-            Hospital hospital = new Hospital(cursor.getInt(0), cursor.getString(3), cursor.getString(1), cursor.getString(2), cursor.getString(4), cursor.getInt(5), cursor.getString(6));
+            Hospital hospital = new Hospital(cursor.getInt(0), cursor.getString(3), cursor.getString(1), cursor.getString(2), cursor.getString(4), cursor.getInt(5), cursor.getString(6), cursor.getInt(7));
             mHospitals.add(hospital);
             cursor.moveToNext();
         }
         cursor.close();
         db.close();
         return mHospitals;
+    }
+
+    public List<Fav> GetFavs() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Fav> mFavs = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM fav", null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        while (!cursor.isAfterLast()) {
+            Fav fav = new Fav();
+            fav.setId(cursor.getInt(0));
+            fav.setIdItem(cursor.getInt(1));
+            fav.setType(cursor.getInt(2));
+            mFavs.add(fav);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        db.close();
+        return mFavs;
+    }
+
+    public void insertFav(int idItem, int type) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "INSERT INTO FAV(idItem, type ) VALUES (" + idItem + "," + type + ")";
+        db.execSQL(query);
+    }
+
+    public void delFav(int idItem, int type) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "DELETE FROM FAV WHERE idItem = " + idItem + " and type = " + type;
+        db.execSQL(query);
+    }
+
+    public void updateItemHospitalFav(int idHospital) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "UPDATE Hospital SET fav = 1 WHERE id = " + idHospital;
+        db.execSQL(query);
+    }
+
+    public void updateItemProviceFav(int idProvice) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "UPDATE Provices SET fav = 1 WHERE id = " + idProvice;
+        db.execSQL(query);
+    }
+
+    public void updateItemDrugFav(int idDrug) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "UPDATE Drug SET fav = 1 WHERE id = " + idDrug;
+        db.execSQL(query);
+    }
+
+    public void updateItemHospitalUnFav(int idHospital) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "UPDATE Hospital SET fav = 0 WHERE id = " + idHospital;
+        db.execSQL(query);
+    }
+
+    public void updateItemProviceUnFav(int idProvice) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "UPDATE Provices SET fav = 0 WHERE id = " + idProvice;
+        db.execSQL(query);
+    }
+
+    public void updateItemDrugUnFav(int idDrug) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "UPDATE Drug SET fav = 0 WHERE id = " + idDrug;
+        db.execSQL(query);
     }
 
     public void CopyDataBaseFromAsset() throws IOException {

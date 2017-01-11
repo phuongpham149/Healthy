@@ -13,11 +13,13 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.phuong.healthy.R;
+import com.example.phuong.healthy.databases.SqlLiteDbHelper;
 import com.example.phuong.healthy.models.Hospital;
 import com.example.phuong.healthy.utils.TrackGPS;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -44,7 +46,7 @@ import java.util.List;
 @EFragment(R.layout.fragment_hospital_detail)
 public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCallback {
     @FragmentArg
-    public long idHospital;
+    public int idHospital;
 
     @ViewById(R.id.tvNameHospital)
     TextView mNameHospital;
@@ -63,6 +65,7 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
     private LatLng myLatLng;
     private Hospital mHospital;
     private TrackGPS gps;
+    private SqlLiteDbHelper mSqlLiteDbHelper;
 
     @Click(R.id.imgDirection)
     void directionAction() {
@@ -103,6 +106,8 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
 
     @Override
     void inits() {
+        mSqlLiteDbHelper = new SqlLiteDbHelper(getActivity());
+        mSqlLiteDbHelper.openDataBase();
         initData();
         SupportMapFragment mSupportMapFragment = SupportMapFragment.newInstance(null);
         FragmentManager fm = getChildFragmentManager();
@@ -122,7 +127,7 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
             longitudeDis = latlng.longitude;
             latitudeDis = latlng.latitude;
         } else {
-            Toast.makeText(getActivity(), "Please turn on network", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.message_turn_on_network), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -134,9 +139,12 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
     }
 
     public void initData() {
-        mNameHospital.setText("Bạch Mai");
-        mPhoneHospital.setText("04 234 234");
-        mAddress = "54 Nguyễn Lương Bằng, Liên Chiểu, Đà Nẵng";
+        //Hospital hospital = new Hospital();
+        Hospital hospital = mSqlLiteDbHelper.getHospitalDetail(idHospital);
+        Log.d("tag11", hospital.toString());
+        mNameHospital.setText(hospital.getName());
+        mPhoneHospital.setText(hospital.getPhone());
+        mAddress = hospital.getAddress();
     }
 
     public void drawDirection() {
@@ -160,7 +168,7 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
                 map.animateCamera(CameraUpdateFactory
                         .newCameraPosition(mPosition));
             } else {
-                Toast.makeText(getActivity(), "Please turn on network", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getActivity().getString(R.string.message_turn_on_network), Toast.LENGTH_SHORT).show();
             }
 
         }

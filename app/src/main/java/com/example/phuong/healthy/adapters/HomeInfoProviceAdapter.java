@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.example.phuong.healthy.R;
+import com.example.phuong.healthy.databases.SqlLiteDbHelper;
 import com.example.phuong.healthy.listeners.OnClickItemDetailProviceListener;
 import com.example.phuong.healthy.models.Provices;
+import com.example.phuong.healthy.utils.Constant;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -26,11 +28,14 @@ public class HomeInfoProviceAdapter extends RecyclerView.Adapter<HomeInfoProvice
     private List<Provices> mProvices;
     private Context mContext;
     private OnClickItemDetailProviceListener mListener;
+    private SqlLiteDbHelper mSqlLiteDbHelper;
 
     public HomeInfoProviceAdapter(List<Provices> mProvices, Context mContext, OnClickItemDetailProviceListener listener) {
         this.mProvices = mProvices;
         this.mContext = mContext;
         mListener = listener;
+        mSqlLiteDbHelper = new SqlLiteDbHelper(mContext);
+        mSqlLiteDbHelper.openDataBase();
     }
 
     @Override
@@ -44,6 +49,11 @@ public class HomeInfoProviceAdapter extends RecyclerView.Adapter<HomeInfoProvice
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         Provices provices = mProvices.get(position);
         holder.mTvTitle.setText(provices.getName());
+        if (provices.getFav() == 0) {
+            holder.mImgFav.setChecked(false);
+        } else {
+            holder.mImgFav.setChecked(true);
+        }
         if (!"".equals(provices.getImage())) {
             Picasso.with(mContext)
                     .load(provices.getImage())
@@ -60,7 +70,16 @@ public class HomeInfoProviceAdapter extends RecyclerView.Adapter<HomeInfoProvice
         holder.mImgFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "Add your favourite successful", Toast.LENGTH_SHORT).show();
+                if(mProvices.get(position).getFav()==0){
+                    Toast.makeText(mContext, "Add your favourite successful", Toast.LENGTH_SHORT).show();
+                    mSqlLiteDbHelper.updateItemProviceFav(mProvices.get(position).getId());
+                    mSqlLiteDbHelper.insertFav(mProvices.get(position).getId(), Constant.TYPE_PROVICE);
+                }
+                else{
+                    Toast.makeText(mContext, "Delete favourite successful", Toast.LENGTH_SHORT).show();
+                    mSqlLiteDbHelper.delFav(mProvices.get(position).getId(),Constant.TYPE_PROVICE);
+                    mSqlLiteDbHelper.updateItemProviceUnFav(mProvices.get(position).getId());
+                }
             }
         });
 

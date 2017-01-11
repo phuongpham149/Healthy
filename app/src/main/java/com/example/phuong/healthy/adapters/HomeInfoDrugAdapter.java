@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.example.phuong.healthy.R;
+import com.example.phuong.healthy.databases.SqlLiteDbHelper;
 import com.example.phuong.healthy.models.Drug;
+import com.example.phuong.healthy.utils.Constant;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -25,10 +27,14 @@ public class HomeInfoDrugAdapter extends RecyclerView.Adapter<HomeInfoDrugAdapte
     private List<Drug> mDrugs;
     private Context mContext;
     private onItemDrugClick mListener;
+    private SqlLiteDbHelper mSqlLiteDbHelper;
+
     public HomeInfoDrugAdapter(List<Drug> drugs, Context mContext, onItemDrugClick listener) {
         this.mDrugs = drugs;
         this.mContext = mContext;
         mListener = listener;
+        mSqlLiteDbHelper = new SqlLiteDbHelper(mContext);
+        mSqlLiteDbHelper.openDataBase();
     }
 
     @Override
@@ -42,7 +48,12 @@ public class HomeInfoDrugAdapter extends RecyclerView.Adapter<HomeInfoDrugAdapte
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         Drug drug = mDrugs.get(position);
         holder.mTvTitle.setText(drug.getName());
-        holder.mTvAddress.setText(drug.getIndication());
+        holder.mTvAddress.setText(drug.getManufacturer());
+        if (drug.getFav() == 0) {
+            holder.mImgFav.setChecked(false);
+        } else {
+            holder.mImgFav.setChecked(true);
+        }
         Picasso.with(mContext)
                 .load(drug.getImage())
                 .placeholder(R.drawable.image_default)
@@ -57,7 +68,15 @@ public class HomeInfoDrugAdapter extends RecyclerView.Adapter<HomeInfoDrugAdapte
         holder.mImgFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "Add your favourite successful", Toast.LENGTH_SHORT).show();
+                if (mDrugs.get(position).getFav() == 0) {
+                    Toast.makeText(mContext, "Add your favourite successful", Toast.LENGTH_SHORT).show();
+                    mSqlLiteDbHelper.insertFav(mDrugs.get(position).getId(), Constant.TYPE_DRUG);
+                    mSqlLiteDbHelper.updateItemDrugFav(mDrugs.get(position).getId());
+                } else {
+                    Toast.makeText(mContext, "Delete favourite successful", Toast.LENGTH_SHORT).show();
+                    mSqlLiteDbHelper.updateItemDrugUnFav(mDrugs.get(position).getId());
+                    mSqlLiteDbHelper.delFav(mDrugs.get(position).getId(), Constant.TYPE_DRUG);
+                }
             }
         });
 
@@ -72,6 +91,10 @@ public class HomeInfoDrugAdapter extends RecyclerView.Adapter<HomeInfoDrugAdapte
     @Override
     public int getItemCount() {
         return mDrugs.size();
+    }
+
+    public interface onItemDrugClick {
+        void itemDrugClick(int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -92,9 +115,5 @@ public class HomeInfoDrugAdapter extends RecyclerView.Adapter<HomeInfoDrugAdapte
             mSwipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe);
 
         }
-    }
-
-    public interface onItemDrugClick{
-        void itemDrugClick(int position);
     }
 }

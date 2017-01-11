@@ -50,7 +50,9 @@ public class HospitalFragment extends BaseFragment implements HomeInfoHospitalAd
 
     @Override
     public void itemDetailClick(int position) {
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainInfor, HospitalDetailFragment_.builder().build()).addToBackStack(getClass().getName()).commit();
+        HospitalDetailFragment hospitalDetailFragment = HospitalDetailFragment_.builder().build();
+        hospitalDetailFragment.idHospital = mHospitals.get(position).getId();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainInfor, hospitalDetailFragment).addToBackStack(getClass().getName()).commit();
     }
 
     @TextChange(R.id.edtSearch)

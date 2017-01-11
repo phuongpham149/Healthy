@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.example.phuong.healthy.R;
+import com.example.phuong.healthy.databases.SqlLiteDbHelper;
 import com.example.phuong.healthy.models.Hospital;
+import com.example.phuong.healthy.utils.Constant;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -25,11 +27,15 @@ public class HomeInfoHospitalAdapter extends RecyclerView.Adapter<HomeInfoHospit
     private List<Hospital> mHospitals;
     private Context mContext;
     private onItemDetailClick mListener;
+    private SqlLiteDbHelper mSqlLiteDbHelper;
 
     public HomeInfoHospitalAdapter(List<Hospital> mHospitals, Context mContext, onItemDetailClick listener) {
         this.mHospitals = mHospitals;
         this.mContext = mContext;
         mListener = listener;
+
+        mSqlLiteDbHelper = new SqlLiteDbHelper(mContext);
+        mSqlLiteDbHelper.openDataBase();
     }
 
     @Override
@@ -49,6 +55,11 @@ public class HomeInfoHospitalAdapter extends RecyclerView.Adapter<HomeInfoHospit
                 .placeholder(R.drawable.image_default)
                 .error(R.drawable.image_not_found)
                 .into(holder.mImgIcon);
+        if (hospital.getFav() == 0) {
+            holder.mImgFav.setChecked(false);
+        } else {
+            holder.mImgFav.setChecked(true);
+        }
 
         holder.mSwipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
 
@@ -58,7 +69,15 @@ public class HomeInfoHospitalAdapter extends RecyclerView.Adapter<HomeInfoHospit
         holder.mImgFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "Add your favourite successful", Toast.LENGTH_SHORT).show();
+                if (mHospitals.get(position).getFav() == 0) {
+                    Toast.makeText(mContext, "Add your favourite successful", Toast.LENGTH_SHORT).show();
+                    mSqlLiteDbHelper.updateItemHospitalFav(mHospitals.get(position).getId());
+                    mSqlLiteDbHelper.insertFav(mHospitals.get(position).getId(), Constant.TYPE_HOSPITAL);
+                } else {
+                    Toast.makeText(mContext, "Delete favourite successful", Toast.LENGTH_SHORT).show();
+                    mSqlLiteDbHelper.updateItemHospitalUnFav(mHospitals.get(position).getId());
+                    mSqlLiteDbHelper.delFav(mHospitals.get(position).getId(), Constant.TYPE_HOSPITAL);
+                }
             }
         });
 

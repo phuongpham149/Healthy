@@ -7,7 +7,12 @@ import android.widget.TextView;
 
 import com.example.phuong.healthy.R;
 import com.example.phuong.healthy.adapters.HomeFavAdapter;
+import com.example.phuong.healthy.databases.SqlLiteDbHelper;
+import com.example.phuong.healthy.models.Drug;
 import com.example.phuong.healthy.models.Fav;
+import com.example.phuong.healthy.models.Hospital;
+import com.example.phuong.healthy.models.Provices;
+import com.example.phuong.healthy.utils.Constant;
 
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
@@ -27,9 +32,12 @@ public class FavListFragment extends BaseFragment implements HomeFavAdapter.onIt
 
     private List<Fav> mFavs;
     private HomeFavAdapter mHomeFavAdapter;
+    private SqlLiteDbHelper mSqlLiteDbHelper;
 
     @Override
     void inits() {
+        mSqlLiteDbHelper = new SqlLiteDbHelper(getActivity());
+        mSqlLiteDbHelper.openDataBase();
         initData();
         if (mFavs.size() > 0) {
             mTvTitle.setVisibility(View.GONE);
@@ -42,27 +50,43 @@ public class FavListFragment extends BaseFragment implements HomeFavAdapter.onIt
 
     public void initData() {
         mFavs = new ArrayList<>();
-        Fav fav = new Fav();
-        fav.setId(1);
-        fav.setImage("http://enbac10.vcmedia.vn/thumb_max/up_new/2014/09/29/item/880293/20140929191804.jpg");
-        fav.setName("Pentaxin");
-        fav.setType(3);
-        mFavs.add(fav);
+        mFavs = mSqlLiteDbHelper.GetFavs();
+        for (Fav fav : mFavs) {
+            if (fav.getType() == Constant.TYPE_PROVICE) {
+                Provices provices = mSqlLiteDbHelper.getProviceDetail(fav.getIdItem());
+                fav.setName(provices.getName());
+                fav.setImage(provices.getImage());
+            }
+            if (fav.getType() == Constant.TYPE_HOSPITAL) {
+                Hospital hospital = mSqlLiteDbHelper.getHospitalDetail(fav.getIdItem());
+                fav.setName(hospital.getName());
+                fav.setImage(hospital.getImage());
+            }
+            if (fav.getType() == Constant.TYPE_DRUG) {
+                Drug drug = mSqlLiteDbHelper.getDrugDetail(fav.getIdItem());
+                fav.setName(drug.getName());
+                fav.setImage(drug.getImage());
+            }
+        }
     }
 
     @Override
     public void itemClick(int position) {
         switch (mFavs.get(position).getType()) {
             case 1:
-                //provice;
+                HospitalFragment hospitalFragment = HospitalFragment_.builder().build();
+                hospitalFragment.provice = mFavs.get(position).getIdItem();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainFav, hospitalFragment).addToBackStack(getClass().getName()).commit();
                 break;
             case 2:
-                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainInfor,HospitalFragment_.builder().build()).commit();
-                //hospital
+                HospitalDetailFragment hospitalDetailFragment = HospitalDetailFragment_.builder().build();
+                hospitalDetailFragment.idHospital = mFavs.get(position).getIdItem();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainFav, hospitalDetailFragment).addToBackStack(getClass().getName()).commit();
                 break;
             case 3:
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainFav, DrugDetailFragment_.builder().build()).addToBackStack(getClass().getName()).commit();
-                //drug
+                DrugDetailFragment drugDetailFragment = DrugDetailFragment_.builder().build();
+                drugDetailFragment.idDrug = mFavs.get(position).getIdItem();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainFav, drugDetailFragment).addToBackStack(getClass().getName()).commit();
                 break;
         }
     }

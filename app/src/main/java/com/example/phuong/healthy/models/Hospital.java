@@ -18,4 +18,5 @@ public class Hospital {
     private String website;
     private int idProvice;
     private String phone;
+    private int fav;
 }
