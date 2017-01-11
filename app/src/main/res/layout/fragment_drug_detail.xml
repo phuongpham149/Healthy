@@ -7,208 +7,215 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/hospital_detail_background">
-
-        <com.example.phuong.healthy.views.CircleImage
-            android:id="@+id/imgDrug"
-            android:layout_width="@dimen/imageview_item_drug_detail_width"
-            android:layout_height="@dimen/imageview_item_drug_detail_height"
-            android:layout_centerHorizontal="true"
-            android:scaleType="fitXY" />
+        android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/rl_side_effect_drug"
+            android:id="@+id/rl_content"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ll_item_drug_detail_height"
-            android:layout_below="@id/imgDrug"
-            android:layout_margin="@dimen/ll_item_drug_detail_margin"
-            android:layout_marginTop="@dimen/ll_item_drug_detail_margin_top"
-            android:background="@color/ll_item_drug_detail_background">
+            android:layout_height="wrap_content"
+            android:background="@drawable/hospital_detail_background">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.example.phuong.healthy.views.CircleImage
+                android:id="@+id/imgDrug"
+                android:layout_width="@dimen/imageview_item_drug_detail_width"
+                android:layout_height="@dimen/imageview_item_drug_detail_height"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY" />
+
+            <RelativeLayout
+                android:id="@+id/rl_side_effect_drug"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ll_item_drug_detail_height"
+                android:layout_below="@id/imgDrug"
+                android:layout_margin="@dimen/ll_item_drug_detail_margin"
+                android:layout_marginTop="@dimen/ll_item_drug_detail_margin_top"
+                android:background="@color/ll_item_drug_detail_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/textview_item_drug_detail_padding"
+                    android:text="@string/textview_info_item_drug_detail"
+                    android:textColor="@color/background_tab"
+                    android:textSize="@dimen/textview_item_drug_detail_size"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageview_info_down_item_drug_detail"
+                    android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
+                    android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_more" />
+
+                <ImageView
+                    android:id="@+id/imageview_info_up_item_drug_detail"
+                    android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
+                    android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_up"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_infor_side_effect_drug"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/textview_item_drug_detail_padding"
-                android:text="@string/textview_info_item_drug_detail"
-                android:textColor="@color/background_tab"
-                android:textSize="@dimen/textview_item_drug_detail_size"
-                android:textStyle="bold" />
+                android:layout_below="@id/rl_side_effect_drug"
+                android:layout_margin="@dimen/ll_item_drug_detail_margin"
+                android:layout_marginTop="@dimen/rl_infor_effect_item_drug_detail_margin_top"
+                android:background="@color/ll_item_drug_detail_background"
+                android:visibility="gone">
 
-            <ImageView
-                android:id="@+id/imageview_info_down_item_drug_detail"
-                android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
-                android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_more" />
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/textview_item_drug_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            <ImageView
-                android:id="@+id/imageview_info_up_item_drug_detail"
-                android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
-                android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_up"
-                android:visibility="gone" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tvManufacter"
+                    style="@style/textview_item_drug_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvName" />
 
-        <RelativeLayout
-            android:id="@+id/rl_infor_side_effect_drug"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ll_infor_effect_item_drug_detail_height"
-            android:layout_below="@id/rl_side_effect_drug"
-            android:layout_margin="@dimen/ll_item_drug_detail_margin"
-            android:layout_marginTop="@dimen/rl_infor_effect_item_drug_detail_margin_top"
-            android:background="@color/ll_item_drug_detail_background"
-            android:visibility="gone">
+                <TextView
+                    android:id="@+id/tvIndication"
+                    style="@style/textview_item_drug_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvManufacter" />
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tvName"
-                style="@style/textview_item_drug_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:id="@+id/rl_contraindication_drug"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ll_item_drug_detail_height"
+                android:layout_below="@id/rl_infor_side_effect_drug"
+                android:layout_margin="@dimen/ll_item_drug_detail_margin"
+                android:layout_marginTop="@dimen/ll_item_drug_detail_margin_top"
+                android:background="@color/ll_item_drug_detail_background">
 
-            <TextView
-                android:id="@+id/tvManufacter"
-                style="@style/textview_item_drug_detail"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/textview_name_drug_item_drug_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/textview_item_drug_detail_padding"
+                    android:text="@string/textview_contraindication_item_drug_detail"
+                    android:textColor="@color/background_tab"
+                    android:textSize="@dimen/textview_item_drug_detail_size"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageview_contraindication_down_item_drug_detail"
+                    android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
+                    android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_more" />
+
+                <ImageView
+                    android:id="@+id/imageview_contraindication_up_item_drug_detail"
+                    android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
+                    android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_up"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_contraindication_effect_item_drug"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvName" />
+                android:layout_below="@id/rl_contraindication_drug"
+                android:layout_margin="@dimen/ll_item_drug_detail_margin"
+                android:layout_marginTop="@dimen/rl_infor_effect_item_drug_detail_margin_top"
+                android:background="@color/ll_item_drug_detail_background"
+                android:visibility="gone">
 
-            <TextView
-                android:id="@+id/tvIndication"
-                style="@style/textview_item_drug_detail"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvContraindication"
+                    style="@style/textview_item_drug_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_usage_drug"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ll_item_drug_detail_height"
+                android:layout_below="@id/rl_contraindication_effect_item_drug"
+                android:layout_margin="@dimen/ll_item_drug_detail_margin"
+                android:layout_marginTop="@dimen/ll_item_drug_detail_margin_top"
+                android:background="@color/ll_item_drug_detail_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/textview_item_drug_detail_padding"
+                    android:text="@string/textview_usage_item_drug_detail"
+                    android:textColor="@color/background_tab"
+                    android:textSize="@dimen/textview_item_drug_detail_size"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageview_usage_down_item_drug_detail"
+                    android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
+                    android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_more" />
+
+                <ImageView
+                    android:id="@+id/imageview_usage_up_item_drug_detail"
+                    android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
+                    android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_up"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_info_usage"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvManufacter" />
-        </RelativeLayout>
+                android:layout_below="@id/rl_usage_drug"
+                android:layout_margin="@dimen/ll_item_drug_detail_margin"
+                android:layout_marginTop="@dimen/rl_infor_effect_item_drug_detail_margin_top"
+                android:background="@color/ll_item_drug_detail_background"
+                android:visibility="gone">
 
-        <RelativeLayout
-            android:id="@+id/rl_contraindication_drug"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ll_item_drug_detail_height"
-            android:layout_below="@id/rl_infor_side_effect_drug"
-            android:layout_margin="@dimen/ll_item_drug_detail_margin"
-            android:layout_marginTop="@dimen/ll_item_drug_detail_margin_top"
-            android:background="@color/ll_item_drug_detail_background">
-
-            <TextView
-                android:id="@+id/textview_name_drug_item_drug_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/textview_item_drug_detail_padding"
-                android:text="@string/textview_contraindication_item_drug_detail"
-                android:textColor="@color/background_tab"
-                android:textSize="@dimen/textview_item_drug_detail_size"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imageview_contraindication_down_item_drug_detail"
-                android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
-                android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_more" />
-
-            <ImageView
-                android:id="@+id/imageview_contraindication_up_item_drug_detail"
-                android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
-                android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_up"
-                android:visibility="gone" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_contraindication_effect_item_drug"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ll_infor_effect_item_drug_detail_height"
-            android:layout_below="@id/rl_contraindication_drug"
-            android:layout_margin="@dimen/ll_item_drug_detail_margin"
-            android:layout_marginTop="@dimen/rl_infor_effect_item_drug_detail_margin_top"
-            android:background="@color/ll_item_drug_detail_background"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/tvContraindication"
-                style="@style/textview_item_drug_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_usage_drug"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ll_item_drug_detail_height"
-            android:layout_below="@id/rl_contraindication_effect_item_drug"
-            android:layout_margin="@dimen/ll_item_drug_detail_margin"
-            android:layout_marginTop="@dimen/ll_item_drug_detail_margin_top"
-            android:background="@color/ll_item_drug_detail_background">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/textview_item_drug_detail_padding"
-                android:text="@string/textview_usage_item_drug_detail"
-                android:textColor="@color/background_tab"
-                android:textSize="@dimen/textview_item_drug_detail_size"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imageview_usage_down_item_drug_detail"
-                android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
-                android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_more" />
-
-            <ImageView
-                android:id="@+id/imageview_usage_up_item_drug_detail"
-                android:layout_width="@dimen/imageview_drop_item_drug_detail_width"
-                android:layout_height="@dimen/imageview_drop_item_drug_detail_height"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/imageview_drop_item_drug_detail_margin_right"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_up"
-                android:visibility="gone" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_info_usage"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ll_infor_effect_item_drug_detail_height"
-            android:layout_below="@id/rl_usage_drug"
-            android:layout_margin="@dimen/ll_item_drug_detail_margin"
-            android:layout_marginTop="@dimen/rl_infor_effect_item_drug_detail_margin_top"
-            android:background="@color/ll_item_drug_detail_background"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/tvUsage"
-                style="@style/textview_item_drug_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvUsage"
+                    style="@style/textview_item_drug_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
         </RelativeLayout>
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnShare"
             android:layout_width="@dimen/float_button_item_drug_detail"
             android:layout_height="@dimen/float_button_item_drug_detail"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/rl_info_usage"
+            android:layout_below="@+id/rl_content"
             android:src="@android:drawable/ic_menu_share"
             app:backgroundTint="@color/background_tab" />
     </RelativeLayout>

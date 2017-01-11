@@ -11,10 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor(suppressConstructorProperties = true)
 public class Drug {
+    private int id;
     private String name;
     private String manufacturer;
     private String indication;
     private String contraindication;
     private String dosage_and_usage;
     private String image;
+    private int fav;
 }

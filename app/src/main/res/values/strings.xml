@@ -40,9 +40,7 @@
         <item>you can save some informations which you like</item>
         <item>you can setting to my app remind you</item>
     </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="textview_galery_item_detect">Từ thư viện</string>
     <string name="textview_camera_item_detect">Từ camera</string>
+    <string name="message_turn_on_network">Please turn on network</string>
 </resources>

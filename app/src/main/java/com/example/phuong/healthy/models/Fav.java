@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Fav {
     private int id;
+    private int idItem;
     private String name;
     private String image;
     private int type;
