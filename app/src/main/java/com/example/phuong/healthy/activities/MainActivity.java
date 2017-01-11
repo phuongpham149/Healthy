@@ -26,7 +26,6 @@ public class MainActivity extends BaseActivity {
     private MainTutorialAdapter mAdapter;
     private PageIndicator mPagerIndicator;
     private int mPage = 0;
-    private boolean mTranfers = false;
     Runnable runnable = new Runnable() {
         public void run() {
             if (mAdapter.getCount() == mPage) {

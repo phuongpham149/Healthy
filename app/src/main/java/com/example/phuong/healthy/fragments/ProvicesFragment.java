@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import com.example.phuong.healthy.R;
 import com.example.phuong.healthy.adapters.HomeInfoProviceAdapter;
+import com.example.phuong.healthy.databases.SqlLiteDbHelper;
 import com.example.phuong.healthy.listeners.OnClickItemDetailProviceListener;
 import com.example.phuong.healthy.models.Provices;
 
@@ -28,9 +29,12 @@ public class ProvicesFragment extends BaseFragment implements OnClickItemDetailP
 
     private HomeInfoProviceAdapter mProvicesAdapter;
     private List<Provices> mProvices;
+    private SqlLiteDbHelper mSqlLiteDbHelper;
 
     @Override
     void inits() {
+        mSqlLiteDbHelper = new SqlLiteDbHelper(getActivity());
+        mSqlLiteDbHelper.openDataBase();
         initData();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getBaseContext());
         mRecyclerViewProvices.setLayoutManager(layoutManager);
@@ -40,31 +44,18 @@ public class ProvicesFragment extends BaseFragment implements OnClickItemDetailP
 
     public void initData() {
         mProvices = new ArrayList<>();
-        //mProvices = Provices.listAll(Provices.class);
-        mProvices.add(new Provices("Ha Noi", "https://upload.wikimedia.org/wikipedia/vi/thumb/1/13/Hanoi_Logo.svg/1021px-Hanoi_Logo.svg.png"));
-        mProvices.add(new Provices("Hai Phong", "https://upload.wikimedia.org/wikipedia/vi/thumb/1/13/Hanoi_Logo.svg/1021px-Hanoi_Logo.svg.png"));
-        mProvices.add(new Provices("Bac Giang", "https://travel.com.vn/images/destination/Large/dg_150722_1384161092_13179561885287du-lich-ha-noi.jpg"));
-
-        mProvices.add(new Provices("Hà Nội", "https://upload.wikimedia.org/wikipedia/vi/thumb/1/13/Hanoi_Logo.svg/1021px-Hanoi_Logo.svg.png"));
-        mProvices.add(new Provices("Hải Phòng", "https://upload.wikimedia.org/wikipedia/vi/thumb/1/13/Hanoi_Logo.svg/1021px-Hanoi_Logo.svg.png"));
-        mProvices.add(new Provices("Bắc Giang", "https://travel.com.vn/images/destination/Large/dg_150722_1384161092_13179561885287du-lich-ha-noi.jpg"));
-
-        mProvices.add(new Provices("Hà Nội", "https://upload.wikimedia.org/wikipedia/vi/thumb/1/13/Hanoi_Logo.svg/1021px-Hanoi_Logo.svg.png"));
-        mProvices.add(new Provices("Hải Phòng", "https://upload.wikimedia.org/wikipedia/vi/thumb/1/13/Hanoi_Logo.svg/1021px-Hanoi_Logo.svg.png"));
-        mProvices.add(new Provices("Bắc Giang", "https://travel.com.vn/images/destination/Large/dg_150722_1384161092_13179561885287du-lich-ha-noi.jpg"));
-
-        mProvices.add(new Provices("Hà Nội", "https://upload.wikimedia.org/wikipedia/vi/thumb/1/13/Hanoi_Logo.svg/1021px-Hanoi_Logo.svg.png"));
-        mProvices.add(new Provices("Hải Phòng", "https://upload.wikimedia.org/wikipedia/vi/thumb/1/13/Hanoi_Logo.svg/1021px-Hanoi_Logo.svg.png"));
-        mProvices.add(new Provices("Bắc Giang", "https://travel.com.vn/images/destination/Large/dg_150722_1384161092_13179561885287du-lich-ha-noi.jpg"));
+        mProvices = mSqlLiteDbHelper.GetProvices();
     }
 
     @Override
     public void clickItemDetailProvice(int position) {
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainInfor, HospitalFragment_.builder().build()).addToBackStack(getClass().getName()).commit();
+        HospitalFragment hospitalFragment = HospitalFragment_.builder().build();
+        hospitalFragment.provice = mProvices.get(position).getId();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainInfor, hospitalFragment).addToBackStack(getClass().getName()).commit();
     }
 
     @TextChange(R.id.edtSearch)
-    void onTextChangesSearch(CharSequence query, int before, int start, int count) {
+    void onTextChangesSearch(CharSequence query) {
         query = query.toString().toLowerCase();
         final List<Provices> filteredList = new ArrayList<>();
 
