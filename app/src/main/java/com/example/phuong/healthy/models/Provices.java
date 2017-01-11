@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor(suppressConstructorProperties = true)
 @Data
 public class Provices {
+    private int id;
     private String name;
     private String image;
 

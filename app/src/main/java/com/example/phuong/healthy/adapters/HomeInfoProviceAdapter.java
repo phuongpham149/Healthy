@@ -44,11 +44,13 @@ public class HomeInfoProviceAdapter extends RecyclerView.Adapter<HomeInfoProvice
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         Provices provices = mProvices.get(position);
         holder.mTvTitle.setText(provices.getName());
-        Picasso.with(mContext)
-                .load(provices.getImage())
-                .placeholder(R.drawable.image_default)
-                .error(R.drawable.image_not_found)
-                .into(holder.mImgIcon);
+        if (!"".equals(provices.getImage())) {
+            Picasso.with(mContext)
+                    .load(provices.getImage())
+                    .placeholder(R.drawable.image_default)
+                    .error(R.drawable.image_not_found)
+                    .into(holder.mImgIcon);
+        }
 
         holder.mSwipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
 

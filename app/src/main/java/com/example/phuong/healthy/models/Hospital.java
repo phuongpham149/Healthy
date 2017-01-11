@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(suppressConstructorProperties = true)
 @Data
 public class Hospital {
+    private int id;
     private String name;
     private String address;
     private String image;
     private String website;
-    private Provices provices;
+    private int idProvice;
     private String phone;
 }
