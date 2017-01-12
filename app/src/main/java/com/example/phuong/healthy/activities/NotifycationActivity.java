@@ -1,17 +1,17 @@
 package com.example.phuong.healthy.activities;
 
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.example.phuong.healthy.R;
+import com.example.phuong.healthy.eventBus.BusProvider;
 import com.example.phuong.healthy.fragments.DetectFragment_;
 import com.example.phuong.healthy.fragments.FavFragment_;
 import com.example.phuong.healthy.fragments.InforFragment_;
 import com.example.phuong.healthy.fragments.SettingFragment_;
-import com.example.phuong.healthy.services.RemindDrugService;
 
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
@@ -20,7 +20,7 @@ import org.androidannotations.annotations.ViewById;
  * Created by phuong on 05/01/2017.
  */
 @EActivity(R.layout.activity_home)
-public class HomeActivity extends BaseActivity {
+public class NotifycationActivity extends BaseActivity {
 
     @ViewById(R.id.tabs)
     TabLayout mTabs;
@@ -28,11 +28,10 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     void inits() {
-        Intent intent = new Intent(this, RemindDrugService.class);
-        startService(intent);
-
+        BusProvider.getInstance().register(this);
+        BusProvider.getInstance().post(true);
         mFragmentManager = getSupportFragmentManager();
-        mFragmentManager.beginTransaction().replace(R.id.flContainer, DetectFragment_.builder().build()).commit();
+        mFragmentManager.beginTransaction().replace(R.id.flContainer, SettingFragment_.builder().build()).commit();
 
         initTextTab();
 
