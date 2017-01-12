@@ -82,11 +82,13 @@
     <dimen name="textview_galery_item_detect_margin_top">20dp</dimen>
     <dimen name="textview_galery_item_detect_margin_start">10dp</dimen>
     <dimen name="View_item_detect_height">2dp</dimen>
-    <dimen name="View_item_detect_margin_top">20dp</dimen>
+    <dimen name="View_item_detect_margin_top">10dp</dimen>
     <dimen name="imageview_item_detect_width">50dp</dimen>
     <dimen name="imageview_item_detect_height">50dp</dimen>
     <dimen name="imageview_item_detect_margin">10dp</dimen>
     <dimen name="textview_camera_item_detect_margin_top">20dp</dimen>
     <dimen name="textview_camera_item_detect_margin_left">10dp</dimen>
     <dimen name="ll_contraindication_effect_item_drug_detail_height">400dp</dimen>
+    <dimen name="imageview_detect">120dp</dimen>
+    <dimen name="imageview_detect_margin_top">20dp</dimen>
 </resources>
