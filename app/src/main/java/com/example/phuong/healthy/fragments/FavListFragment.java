@@ -74,9 +74,9 @@ public class FavListFragment extends BaseFragment implements HomeFavAdapter.onIt
     public void itemClick(int position) {
         switch (mFavs.get(position).getType()) {
             case 1:
-                HospitalFragment hospitalFragment = HospitalFragment_.builder().build();
-                hospitalFragment.provice = mFavs.get(position).getIdItem();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainFav, hospitalFragment).addToBackStack(getClass().getName()).commit();
+                HospitalFavFragment hospitalFavFragment = HospitalFavFragment_.builder().build();
+                hospitalFavFragment.provice = mFavs.get(position).getIdItem();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainFav, hospitalFavFragment).addToBackStack(getClass().getName()).commit();
                 break;
             case 2:
                 HospitalDetailFragment hospitalDetailFragment = HospitalDetailFragment_.builder().build();
