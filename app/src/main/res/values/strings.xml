@@ -43,4 +43,10 @@
     <string name="textview_galery_item_detect">Từ thư viện</string>
     <string name="textview_camera_item_detect">Từ camera</string>
     <string name="message_turn_on_network">Please turn on network</string>
+    <string name="content_notification_remind_drug">Nhắc nhở uống thuốc</string>
+    <string name="title_notification_remind_drug">Nhắc nhở</string>
+    <string name="message_true">true</string>
+    <string name="message_false">false</string>
+    <string name="number_phone_receive_feedback">01645484112</string>
+    <string name="message_send_feedback_success">Send feedback successfully</string>
 </resources>

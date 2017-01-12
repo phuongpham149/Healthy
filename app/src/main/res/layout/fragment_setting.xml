@@ -80,7 +80,7 @@
         <RelativeLayout
             android:id="@+id/rl_set_time_item_setting"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ll_infor_effect_item_drug_detail_height"
+            android:layout_height="wrap_content"
             android:layout_below="@id/rl_remind_setting"
             android:layout_margin="@dimen/ll_item_drug_detail_margin"
             android:layout_marginTop="@dimen/rl_infor_effect_item_drug_detail_margin_top"

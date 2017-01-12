@@ -56,7 +56,7 @@
     <dimen name="rl_item_setting_height">60dp</dimen>
     <dimen name="rl_item_setting_margin">10dp</dimen>
     <dimen name="rl_item_setting_margin_top">5dp</dimen>
-    <dimen name="textview_set_time_margin_left">20dp</dimen>
+    <dimen name="textview_set_time_margin_left">5dp</dimen>
     <dimen name="textview_set_time_margin_top">10dp</dimen>
     <dimen name="edt_feedback_item_setting">10dp</dimen>
     <dimen name="textview_btn_send_feedback_item_setting_width">100dp</dimen>
