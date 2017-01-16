@@ -51,7 +51,10 @@ public class Constant {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String city = addresses.get(0).getAddressLine(3);
+        String city = "";
+        if(addresses!=null){
+            city = addresses.get(0).getAddressLine(3);
+        }
         return city;
     }
 }

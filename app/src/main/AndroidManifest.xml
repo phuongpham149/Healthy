@@ -50,14 +50,14 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_api_key" />
 
-        <activity android:name=".activities.SplashActivity_">
+        <activity android:name=".activities.SplashActivity_" android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity_" />
+        <activity android:name=".activities.MainActivity_" android:noHistory="true"/>
         <activity android:name=".activities.HomeActivity_" />
         <activity android:name=".activities.NotifycationActivity_" />
 
