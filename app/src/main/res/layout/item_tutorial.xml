@@ -14,7 +14,7 @@
         android:layout_weight="10"
         android:contentDescription="@null"
         android:scaleType="fitXY"
-        android:src="@drawable/tutorial1" />
+        android:src="@drawable/tut1" />
 
     <TextView
         android:id="@+id/tvContent"
