@@ -15,7 +15,7 @@ import com.example.phuong.healthy.fragments.MainTutorialFragment_;
 
 public class MainTutorialAdapter extends FragmentPagerAdapter {
     private int[] mImages = {
-            R.drawable.tutorial1, R.drawable.tutorial3, R.drawable.tutorial2
+            R.drawable.tut1, R.drawable.tuto2, R.drawable.tuto3
     };
     private String[] mContent = {"Detect Drug",
             "Hospital",

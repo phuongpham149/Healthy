@@ -28,8 +28,6 @@ public class SplashActivity extends BaseActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.background));
-        mAnim = AnimationUtils.loadAnimation(this,R.anim.anim_detect_in);
-        mImgLogo.startAnimation(mAnim);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -37,6 +35,6 @@ public class SplashActivity extends BaseActivity {
                 Intent intent = new Intent(SplashActivity.this,MainActivity_.class);
                 startActivity(intent);
             }
-        },3000);
+        },2000);
     }
 }

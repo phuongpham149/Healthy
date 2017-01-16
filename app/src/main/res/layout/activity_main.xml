@@ -7,13 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.phuong.healthy.activities.MainActivity">
 
-    <com.example.phuong.healthy.views.HeaderOptionsView
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/listPreferredItemHeight"
-        android:background="@color/background_header"
-        app:title="@string/textview_main_title"></com.example.phuong.healthy.views.HeaderOptionsView>
-
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpagerTutorial"
         android:layout_width="match_parent"
@@ -28,4 +21,16 @@
         android:layout_alignBottom="@+id/viewpagerTutorial"
         android:layout_centerHorizontal="true"
         android:padding="@dimen/circle_indicator_padding" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvSkip"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textview_skip_size"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/textview_skip_margin_right"
+        android:layout_marginBottom="@dimen/textview_skip_margin_right"
+        android:text="@string/textview_skip"
+        />
 </RelativeLayout>
