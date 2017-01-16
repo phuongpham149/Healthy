@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -79,8 +80,7 @@ public class HomeInfoDrugAdapter extends RecyclerView.Adapter<HomeInfoDrugAdapte
                 }
             }
         });
-
-        holder.mImgDetail.setOnClickListener(new View.OnClickListener() {
+        holder.mRlContentItemDrug.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.itemDrugClick(position);
@@ -102,8 +102,8 @@ public class HomeInfoDrugAdapter extends RecyclerView.Adapter<HomeInfoDrugAdapte
         public TextView mTvTitle;
         public TextView mTvAddress;
         public CheckBox mImgFav;
-        public ImageView mImgDetail;
         public SwipeLayout mSwipeLayout;
+        public RelativeLayout mRlContentItemDrug;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -111,9 +111,8 @@ public class HomeInfoDrugAdapter extends RecyclerView.Adapter<HomeInfoDrugAdapte
             mTvAddress = (TextView) itemView.findViewById(R.id.tvAddress);
             mImgIcon = (ImageView) itemView.findViewById(R.id.imgIcon);
             mImgFav = (CheckBox) itemView.findViewById(R.id.imgFav);
-            mImgDetail = (ImageView) itemView.findViewById(R.id.imgDetail);
             mSwipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe);
-
+            mRlContentItemDrug = (RelativeLayout) itemView.findViewById(R.id.rl_item_content_drug);
         }
     }
 }

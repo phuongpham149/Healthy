@@ -19,29 +19,20 @@
             android:layout_height="match_parent"
             android:background="@color/item_provice_menu_wrapper_background"
             android:gravity="center_vertical"
-            android:weightSum="2">
+            >
 
             <CheckBox
                 android:id="@+id/imgFav"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/item_fav_margin_left"
-                android:layout_weight="1"
                 android:button="@drawable/item_fav_background"
                 android:gravity="center" />
-
-            <ImageView
-                android:id="@+id/imgDetail"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="@null"
-                android:gravity="center"
-                android:src="@drawable/ic_detail" />
         </LinearLayout>
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
+            android:id="@+id/rl_item_content_drug"
             android:layout_height="wrap_content"
             android:background="@android:color/white">
 

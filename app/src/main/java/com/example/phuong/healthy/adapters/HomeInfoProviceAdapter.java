@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,20 +71,18 @@ public class HomeInfoProviceAdapter extends RecyclerView.Adapter<HomeInfoProvice
         holder.mImgFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mProvices.get(position).getFav()==0){
+                if (mProvices.get(position).getFav() == 0) {
                     Toast.makeText(mContext, "Add your favourite successful", Toast.LENGTH_SHORT).show();
                     mSqlLiteDbHelper.updateItemProviceFav(mProvices.get(position).getId());
                     mSqlLiteDbHelper.insertFav(mProvices.get(position).getId(), Constant.TYPE_PROVICE);
-                }
-                else{
+                } else {
                     Toast.makeText(mContext, "Delete favourite successful", Toast.LENGTH_SHORT).show();
-                    mSqlLiteDbHelper.delFav(mProvices.get(position).getId(),Constant.TYPE_PROVICE);
+                    mSqlLiteDbHelper.delFav(mProvices.get(position).getId(), Constant.TYPE_PROVICE);
                     mSqlLiteDbHelper.updateItemProviceUnFav(mProvices.get(position).getId());
                 }
             }
         });
-
-        holder.mImgDetail.setOnClickListener(new View.OnClickListener() {
+        holder.mRlItemContentProvince.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.clickItemDetailProvice(position);
@@ -100,17 +99,16 @@ public class HomeInfoProviceAdapter extends RecyclerView.Adapter<HomeInfoProvice
         public ImageView mImgIcon;
         public TextView mTvTitle;
         public CheckBox mImgFav;
-        public ImageView mImgDetail;
         public SwipeLayout mSwipeLayout;
+        private RelativeLayout mRlItemContentProvince;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             mTvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
             mImgIcon = (ImageView) itemView.findViewById(R.id.imgIcon);
             mImgFav = (CheckBox) itemView.findViewById(R.id.imgFav);
-            mImgDetail = (ImageView) itemView.findViewById(R.id.imgDetail);
             mSwipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe);
-
+            mRlItemContentProvince = (RelativeLayout) itemView.findViewById(R.id.rl_content_item_province);
         }
     }
 }
