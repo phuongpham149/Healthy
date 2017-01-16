@@ -40,6 +40,11 @@
         <item>you can save some informations which you like</item>
         <item>you can setting to my app remind you</item>
     </string-array>
+    <string-array name="message_remind_healthy">
+        <item>Hôm nay, trời sẽ mưa, bạn ra ngoài nhớ mang theo dù, áo mưa</item>
+        <item>Hôm nay, trời gió lạnh bạn nhớ mang áo khoác</item>
+        <item>Hôm nay, trời nắng to, bạn nhớ mang theo ô</item>
+    </string-array>
     <string name="textview_galery_item_detect">Từ thư viện</string>
     <string name="textview_camera_item_detect">Từ camera</string>
     <string name="message_turn_on_network">Please turn on network</string>
@@ -49,4 +54,6 @@
     <string name="message_false">false</string>
     <string name="number_phone_receive_feedback">01645484112</string>
     <string name="message_send_feedback_success">Send feedback successfully</string>
+    <string name="turn_on_gps">android.location.PROVIDERS_CHANGED</string>
+    <string name="package_map">com.google.android.apps.maps</string>
 </resources>

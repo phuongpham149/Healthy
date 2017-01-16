@@ -2,12 +2,14 @@ package com.example.phuong.healthy.fragments;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.example.phuong.healthy.R;
 import com.example.phuong.healthy.adapters.HomeInfoDrugAdapter;
 import com.example.phuong.healthy.databases.SqlLiteDbHelper;
 import com.example.phuong.healthy.models.Drug;
+import com.example.phuong.healthy.utils.Constant;
 
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.TextChange;
@@ -61,8 +63,11 @@ public class DrugFragment extends BaseFragment implements HomeInfoDrugAdapter.on
         for (int i = 0; i < mDrugs.size(); i++) {
 
             final String text = mDrugs.get(i).getName().toLowerCase();
+            String indication = mDrugs.get(i).getIndication().toLowerCase();
 
-            if (text.contains(query)) {
+            if (Constant.unAccent(text).contains(Constant.unAccent(query.toString())) ||
+                    Constant.unAccent(indication).contains(Constant.unAccent(query.toString()))
+                    ) {
                 filteredList.add(mDrugs.get(i));
             }
         }
