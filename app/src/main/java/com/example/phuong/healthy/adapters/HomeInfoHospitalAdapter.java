@@ -1,12 +1,15 @@
 package com.example.phuong.healthy.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -81,7 +84,8 @@ public class HomeInfoHospitalAdapter extends RecyclerView.Adapter<HomeInfoHospit
             }
         });
 
-        holder.mImgDetail.setOnClickListener(new View.OnClickListener() {
+
+        holder.mRlContentItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.itemDetailClick(position);
@@ -103,8 +107,8 @@ public class HomeInfoHospitalAdapter extends RecyclerView.Adapter<HomeInfoHospit
         public TextView mTvTitle;
         public TextView mTvAddress;
         public CheckBox mImgFav;
-        public ImageView mImgDetail;
         public SwipeLayout mSwipeLayout;
+        public RelativeLayout mRlContentItem;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -112,9 +116,8 @@ public class HomeInfoHospitalAdapter extends RecyclerView.Adapter<HomeInfoHospit
             mTvAddress = (TextView) itemView.findViewById(R.id.tvAddress);
             mImgIcon = (ImageView) itemView.findViewById(R.id.imgIcon);
             mImgFav = (CheckBox) itemView.findViewById(R.id.imgFav);
-            mImgDetail = (ImageView) itemView.findViewById(R.id.imgDetail);
             mSwipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe);
-
+            mRlContentItem = (RelativeLayout) itemView.findViewById(R.id.rlContentItemHospital);
         }
     }
 }
