@@ -8,6 +8,7 @@ import com.example.phuong.healthy.R;
 import com.example.phuong.healthy.adapters.HomeInfoHospitalAdapter;
 import com.example.phuong.healthy.databases.SqlLiteDbHelper;
 import com.example.phuong.healthy.models.Hospital;
+import com.example.phuong.healthy.utils.Constant;
 
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
@@ -64,7 +65,7 @@ public class HospitalFragment extends BaseFragment implements HomeInfoHospitalAd
 
             final String text = mHospitals.get(i).getName().toLowerCase();
 
-            if (text.contains(query)) {
+            if (Constant.unAccent(text).contains(Constant.unAccent(query.toString()))) {
                 filteredList.add(mHospitals.get(i));
             }
         }

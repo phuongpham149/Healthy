@@ -91,4 +91,5 @@
     <dimen name="ll_contraindication_effect_item_drug_detail_height">400dp</dimen>
     <dimen name="imageview_detect">120dp</dimen>
     <dimen name="imageview_detect_margin_top">20dp</dimen>
+    <dimen name="float_btn_suggest_margin_right">10dp</dimen>
 </resources>

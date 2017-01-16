@@ -3,6 +3,7 @@ package com.example.phuong.healthy.fragments;
 import android.app.TimePickerDialog;
 import android.content.SharedPreferences;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.phuong.healthy.R;
 import com.example.phuong.healthy.eventBus.BusProvider;
+import com.example.phuong.healthy.eventBus.MessageRemindHealthy;
 import com.example.phuong.healthy.models.RemindDrug;
 import com.example.phuong.healthy.utils.Constant;
 
@@ -59,6 +61,8 @@ public class SettingFragment extends BaseFragment {
     EditText mEdtEmail;
     @ViewById(R.id.edtFeedback)
     EditText mEdtFeedback;
+    @ViewById(R.id.checkbox_turn_on_healthy_setting)
+    CheckBox mChbRemindHealthy;
 
     private Calendar mCurrentTime;
     private String mHourSelect = "";
@@ -86,6 +90,10 @@ public class SettingFragment extends BaseFragment {
             mRlSetTimeSetting.setVisibility(View.VISIBLE);
             mRlRemindSetting.setVisibility(View.VISIBLE);
         }
+
+        if(mSharedPreferences.getBoolean(Constant.STATE_REMIND_HEALTHY,false)){
+            mChbRemindHealthy.setChecked(true);
+        }
         BusProvider.getInstance().register(this);
     }
 
@@ -96,6 +104,21 @@ public class SettingFragment extends BaseFragment {
         } else {
             mRlSetTimeSetting.setVisibility(View.GONE);
         }
+    }
+
+    @CheckedChange(R.id.checkbox_turn_on_healthy_setting)
+    void checkRemindHealthy(){
+        if(mChbRemindHealthy.isChecked()){
+            mEditor.putBoolean(Constant.STATE_REMIND_HEALTHY, true);
+            MessageRemindHealthy messageRemindHealthy = new MessageRemindHealthy(true);
+            BusProvider.getInstance().post(messageRemindHealthy);
+        }
+        else{
+            mEditor.putBoolean(Constant.STATE_REMIND_HEALTHY, false);
+            MessageRemindHealthy messageRemindHealthy = new MessageRemindHealthy(false);
+            BusProvider.getInstance().post(messageRemindHealthy);
+        }
+        mEditor.commit();
     }
 
     @Click(R.id.imageview_remind_down_item_setting)

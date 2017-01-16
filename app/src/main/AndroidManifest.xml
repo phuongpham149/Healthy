@@ -62,7 +62,17 @@
         <activity android:name=".activities.NotifycationActivity_" />
 
         <service android:name=".services.RemindDrugService" />
+
         <receiver android:name=".receivers.RemindDrugReceiver" />
+        <receiver android:name=".receivers.TurnOnGpsReceiver">
+            <intent-filter>
+                <action android:name="android.location.PROVIDERS_CHANGED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".receivers.RemindHealthyReceiver" />
+
+        <service android:name=".services.RemindHealthyService" />
     </application>
 
 </manifest>

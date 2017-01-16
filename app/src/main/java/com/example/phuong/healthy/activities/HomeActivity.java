@@ -12,6 +12,7 @@ import com.example.phuong.healthy.fragments.FavFragment_;
 import com.example.phuong.healthy.fragments.InforFragment_;
 import com.example.phuong.healthy.fragments.SettingFragment_;
 import com.example.phuong.healthy.services.RemindDrugService;
+import com.example.phuong.healthy.services.RemindHealthyService;
 
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
@@ -30,6 +31,9 @@ public class HomeActivity extends BaseActivity {
     void inits() {
         Intent intent = new Intent(this, RemindDrugService.class);
         startService(intent);
+
+        Intent intentRemindHealthy = new Intent(this, RemindHealthyService.class);
+        startService(intentRemindHealthy);
 
         mFragmentManager = getSupportFragmentManager();
         mFragmentManager.beginTransaction().replace(R.id.flContainer, DetectFragment_.builder().build()).commit();

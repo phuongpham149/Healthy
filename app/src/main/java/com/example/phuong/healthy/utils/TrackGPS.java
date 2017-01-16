@@ -134,12 +134,12 @@ public class TrackGPS extends Service implements LocationListener {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
 
-        alertDialog.setTitle(getResources().getString(R.string.title_GPS_Not_Enabled));
+        alertDialog.setTitle(mContext.getResources().getString(R.string.title_GPS_Not_Enabled));
 
-        alertDialog.setMessage(getResources().getString(R.string.message_Do_you_wants_to_turn_On_GPS));
+        alertDialog.setMessage(mContext.getResources().getString(R.string.message_Do_you_wants_to_turn_On_GPS));
 
 
-        alertDialog.setPositiveButton(getResources().getString(R.string.message_Yes), new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(mContext.getResources().getString(R.string.message_Yes), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 mContext.startActivity(intent);
@@ -147,7 +147,7 @@ public class TrackGPS extends Service implements LocationListener {
         });
 
 
-        alertDialog.setNegativeButton(getResources().getString(R.string.message_No), new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(mContext.getResources().getString(R.string.message_No), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }

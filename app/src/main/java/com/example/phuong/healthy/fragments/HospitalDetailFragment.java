@@ -20,7 +20,10 @@ import android.widget.Toast;
 
 import com.example.phuong.healthy.R;
 import com.example.phuong.healthy.databases.SqlLiteDbHelper;
+import com.example.phuong.healthy.eventBus.BusProvider;
+import com.example.phuong.healthy.eventBus.MesageEvent;
 import com.example.phuong.healthy.models.Hospital;
+import com.example.phuong.healthy.utils.Constant;
 import com.example.phuong.healthy.utils.TrackGPS;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,6 +34,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.otto.Subscribe;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
@@ -72,7 +76,7 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
         if (isGoogleMapsInstalled()) {
             String uri = "http://maps.google.com/maps?f=d&hl=en&saddr=" + latitude + "," + longitude + "&daddr=" + latitudeDis + "," + longitudeDis;
             Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
-            intent.setPackage("com.google.android.apps.maps");
+            intent.setPackage(getActivity().getString(R.string.package_map));
             startActivity(intent);
         } else {
             String uri = "http://maps.google.com/maps?f=d&hl=en&saddr=" + latitude + "," + longitude + "&daddr=" + latitudeDis + "," + longitudeDis;
@@ -83,7 +87,7 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
 
     public boolean isGoogleMapsInstalled() {
         try {
-            ApplicationInfo info = getActivity().getPackageManager().getApplicationInfo("com.google.android.apps.maps", 0);
+            ApplicationInfo info = getActivity().getPackageManager().getApplicationInfo(getActivity().getString(R.string.package_map), 0);
             return true;
         } catch (PackageManager.NameNotFoundException e) {
             return false;
@@ -106,6 +110,9 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
 
     @Override
     void inits() {
+        BusProvider.getInstance().register(getActivity());
+        BusProvider.getInstance().register(getActivity());
+
         mSqlLiteDbHelper = new SqlLiteDbHelper(getActivity());
         mSqlLiteDbHelper.openDataBase();
         initData();
@@ -114,6 +121,7 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
         fm.beginTransaction().replace(R.id.map1, mSupportMapFragment).commit();
         mSupportMapFragment.getMapAsync(this);
 
+        //kiem tra da bat gps chưa
         gps = new TrackGPS(getActivity());
         if (gps.canGetLocation()) {
             longitude = gps.getLongitude();
@@ -128,6 +136,16 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
             latitudeDis = latlng.latitude;
         } else {
             Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.message_turn_on_network), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Subscribe
+    public void getMessageTurnOnGPS(MesageEvent message) {
+        Log.d("tag11", " 1 789"+message);
+        if (message.equals(Constant.TURN_ON_GPS)) {
+            longitude = gps.getLongitude();
+            latitude = gps.getLatitude();
+            Log.d("tag11", longitude + " 1 " + latitude);
         }
     }
 
