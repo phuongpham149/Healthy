@@ -41,9 +41,9 @@
         <item>you can setting to my app remind you</item>
     </string-array>
     <string-array name="message_remind_healthy">
-        <item>Hôm nay, trời sẽ mưa, bạn ra ngoài nhớ mang theo dù, áo mưa</item>
-        <item>Hôm nay, trời gió lạnh bạn nhớ mang áo khoác</item>
-        <item>Hôm nay, trời nắng to, bạn nhớ mang theo ô</item>
+        <item>Trời mưa, bạn ra ngoài nhớ mang theo dù, áo mưa</item>
+        <item>Gió lạnh bạn nhớ mang áo khoác</item>
+        <item>Trời nắng to, bạn nhớ mang theo ô</item>
     </string-array>
     <string name="textview_galery_item_detect">Từ thư viện</string>
     <string name="textview_camera_item_detect">Từ camera</string>

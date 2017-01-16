@@ -16,6 +16,7 @@ import com.example.phuong.healthy.R;
 import com.example.phuong.healthy.activities.HomeActivity_;
 import com.example.phuong.healthy.activities.MainActivity_;
 import com.example.phuong.healthy.activities.NotifycationActivity_;
+import com.example.phuong.healthy.utils.Constant;
 import com.example.phuong.healthy.utils.TrackGPS;
 
 import org.json.JSONException;
@@ -46,7 +47,7 @@ public class RemindHealthyReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        mProvince = getLocationAddress(context);
+        mProvince = Constant.getLocationAddress(context);
         mContext = context;
         mMessage = context.getResources().getStringArray(R.array.message_remind_healthy);
         getMessageRemind(mProvince,mMessage);
@@ -64,28 +65,6 @@ public class RemindHealthyReceiver extends BroadcastReceiver {
 
 
         return messageWeather;
-    }
-
-    public String getLocationAddress(Context context) {
-        TrackGPS gps = new TrackGPS(context);
-        if (gps.canGetLocation()) {
-            mLongitude = gps.getLongitude();
-            mLatitude = gps.getLatitude();
-        } else {
-            gps.showSettingsAlert();
-        }
-
-        Geocoder geocoder;
-        List<Address> addresses = null;
-        geocoder = new Geocoder(context, Locale.getDefault());
-
-        try {
-            addresses = geocoder.getFromLocation(mLatitude, mLongitude, 1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String city = addresses.get(0).getAddressLine(3);
-        return city;
     }
 
     class Weather extends AsyncTask<String, Void, String> {
