@@ -17,7 +17,6 @@ public class TurnOnGpsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if(intent.getAction().equals(context.getString(R.string.turn_on_gps))){
-            Log.d("tag112","broadcast nhan gps");
             BusProvider.getInstance().register(context);
             BusProvider.getInstance().post(Constant.TURN_ON_GPS);
         }

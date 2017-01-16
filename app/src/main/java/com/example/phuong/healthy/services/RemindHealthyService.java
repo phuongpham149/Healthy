@@ -38,7 +38,6 @@ public class RemindHealthyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("tag11","healthy service");
         BusProvider.getInstance().register(this);
 
         mSharedPreferences = getSharedPreferences(Constant.NAME_SHAREPREFERENCES, 0);
@@ -49,22 +48,17 @@ public class RemindHealthyService extends Service {
     @Subscribe
     public void getMessage(MessageRemindHealthy message) {
         if (message.isState()) {
-            //bat
             mState = true;
             accessRemind();
-            //xu ly
         } else {
-            //tat
             mState = false;
             accessRemind();
-            //xu ly
         }
 
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //ham xu ly
         accessRemind();
         return START_STICKY;
     }
@@ -72,7 +66,6 @@ public class RemindHealthyService extends Service {
     public void accessRemind() {
         Calendar calendar = Calendar.getInstance();
         if (mState) {
-            Log.d("tag11","healthy service state");
             calendar.set(Calendar.HOUR_OF_DAY, 6);
             calendar.set(Calendar.MINUTE, 0);
             Intent myIntent = new Intent(RemindHealthyService.this, RemindHealthyReceiver.class);
