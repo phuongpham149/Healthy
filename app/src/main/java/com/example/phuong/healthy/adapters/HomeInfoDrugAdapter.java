@@ -83,7 +83,7 @@ public class HomeInfoDrugAdapter extends RecyclerView.Adapter<HomeInfoDrugAdapte
         holder.mRlContentItemDrug.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.itemDrugClick(position);
+                mListener.itemDrugClick(mDrugs.get(position).getId());
             }
         });
     }

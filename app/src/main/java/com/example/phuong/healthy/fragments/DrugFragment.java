@@ -2,7 +2,6 @@ package com.example.phuong.healthy.fragments;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.EditText;
 
 import com.example.phuong.healthy.R;
@@ -51,7 +50,7 @@ public class DrugFragment extends BaseFragment implements HomeInfoDrugAdapter.on
     @Override
     public void itemDrugClick(int position) {
         DrugDetailFragment drugDetailFragment = DrugDetailFragment_.builder().build();
-        drugDetailFragment.idDrug = mDrugs.get(position).getId();
+        drugDetailFragment.idDrug = position;
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainInfor, drugDetailFragment).addToBackStack(getClass().getName()).commit();
     }
 

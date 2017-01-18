@@ -1,11 +1,8 @@
 package com.example.phuong.healthy.fragments;
 
-import android.location.Address;
-import android.location.Geocoder;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.EditText;
 
 import com.example.phuong.healthy.R;
@@ -14,17 +11,14 @@ import com.example.phuong.healthy.databases.SqlLiteDbHelper;
 import com.example.phuong.healthy.listeners.OnClickItemDetailProviceListener;
 import com.example.phuong.healthy.models.Provices;
 import com.example.phuong.healthy.utils.Constant;
-import com.example.phuong.healthy.utils.TrackGPS;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.TextChange;
 import org.androidannotations.annotations.ViewById;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by phuong on 06/01/2017.
@@ -63,9 +57,9 @@ public class ProvicesFragment extends BaseFragment implements OnClickItemDetailP
     }
 
     @Override
-    public void clickItemDetailProvice(int position) {
+    public void clickItemDetailProvice(int id) {
         HospitalFragment hospitalFragment = HospitalFragment_.builder().build();
-        hospitalFragment.provice = mProvices.get(position).getId();
+        hospitalFragment.provice = id;
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainInfor, hospitalFragment).addToBackStack(getClass().getName()).commit();
     }
 
@@ -90,7 +84,7 @@ public class ProvicesFragment extends BaseFragment implements OnClickItemDetailP
     }
 
     @Click(R.id.btnSuggest)
-    void SuggestAction(){
+    void SuggestAction() {
         String city = Constant.getLocationAddress(getActivity());
         //tim id
         for (int i = 0; i < mProvices.size(); i++) {
@@ -100,9 +94,8 @@ public class ProvicesFragment extends BaseFragment implements OnClickItemDetailP
                 mIdProvice = mProvices.get(i).getId();
             }
         }
-
         HospitalFragment hospitalFragment = HospitalFragment_.builder().build();
-        hospitalFragment.provice = mProvices.get(mIdProvice).getId();
+        hospitalFragment.provice = mIdProvice;
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frContainInfor, hospitalFragment).addToBackStack(getClass().getName()).commit();
     }
 

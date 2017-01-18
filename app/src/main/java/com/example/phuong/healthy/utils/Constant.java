@@ -3,6 +3,8 @@ package com.example.phuong.healthy.utils;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import java.io.IOException;
 import java.text.Normalizer;
@@ -23,7 +25,7 @@ public class Constant {
     public static final String MIN_SHAREPREFERENCES = "min";
     public static final String STATUS_SHAREPREFERENCES = "status";
     public static final String STATE_REMIND_HEALTHY = "remind_healthy";
-    public static final Integer TURN_ON_GPS = 1;
+    public static final boolean TURN_ON_GPS = true;
     private static double mLongitude;
     private static double mLatitude;
 
@@ -52,9 +54,23 @@ public class Constant {
             e.printStackTrace();
         }
         String city = "";
-        if(addresses!=null){
+        if (addresses != null) {
             city = addresses.get(0).getAddressLine(3);
         }
         return city;
+    }
+
+    public static boolean isNetWork(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (networkInfo.isConnected()) {
+            return true;
+        }
+        networkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (networkInfo.isConnected()) {
+            return true;
+        }
+        return false;
     }
 }
