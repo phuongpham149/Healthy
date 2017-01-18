@@ -46,7 +46,7 @@ public class RemindHealthyReceiver extends BroadcastReceiver {
         if (Constant.isNetWork(context)) {
             getMessageRemind(mProvince, mMessage);
         } else {
-            Toast.makeText(context, "please turn on network or connect wifi", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.message_turn_on_network_or_wifi), Toast.LENGTH_SHORT).show();
         }
     }
 

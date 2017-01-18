@@ -57,4 +57,5 @@
     <string name="turn_on_gps">android.location.PROVIDERS_CHANGED</string>
     <string name="package_map">com.google.android.apps.maps</string>
     <string name="textview_skip">Skip</string>
+    <string name="message_turn_on_network_or_wifi">please turn on network or connect wifi</string>
 </resources>
