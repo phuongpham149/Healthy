@@ -85,7 +85,7 @@ public class HomeInfoProviceAdapter extends RecyclerView.Adapter<HomeInfoProvice
         holder.mRlItemContentProvince.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.clickItemDetailProvice(position);
+                mListener.clickItemDetailProvice(mProvices.get(position).getId());
             }
         });
     }

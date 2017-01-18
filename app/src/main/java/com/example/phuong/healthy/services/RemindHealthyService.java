@@ -7,11 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.example.phuong.healthy.eventBus.BusProvider;
 import com.example.phuong.healthy.eventBus.MessageRemindHealthy;
-import com.example.phuong.healthy.receivers.RemindDrugReceiver;
 import com.example.phuong.healthy.receivers.RemindHealthyReceiver;
 import com.example.phuong.healthy.utils.Constant;
 import com.squareup.otto.Subscribe;
@@ -65,13 +63,20 @@ public class RemindHealthyService extends Service {
 
     public void accessRemind() {
         Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        int minsNow = minute + hour * 60;
+        int minsAlarm = 0;
         if (mState) {
-            calendar.set(Calendar.HOUR_OF_DAY, 6);
-            calendar.set(Calendar.MINUTE, 0);
-            Intent myIntent = new Intent(RemindHealthyService.this, RemindHealthyReceiver.class);
-            pendingIntent = PendingIntent.getBroadcast(this, 0, myIntent, 0);
-            alarmManager = (AlarmManager) this.getSystemService(getBaseContext().ALARM_SERVICE);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            minsAlarm = 60 * 10 + 14;
+            if (minsAlarm > minsNow) {
+                calendar.set(Calendar.HOUR_OF_DAY, 10);
+                calendar.set(Calendar.MINUTE, 14);
+                Intent myIntent = new Intent(RemindHealthyService.this, RemindHealthyReceiver.class);
+                pendingIntent = PendingIntent.getBroadcast(this, 0, myIntent, 0);
+                alarmManager = (AlarmManager) this.getSystemService(getBaseContext().ALARM_SERVICE);
+                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            }
         }
     }
 }

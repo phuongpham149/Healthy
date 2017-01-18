@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,7 +79,7 @@ public class HomeFavAdapter extends RecyclerView.Adapter<HomeFavAdapter.MyViewHo
             }
         });
 
-        holder.mImgDetail.setOnClickListener(new View.OnClickListener() {
+        holder.mRlItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.itemClick(position);
@@ -99,17 +100,16 @@ public class HomeFavAdapter extends RecyclerView.Adapter<HomeFavAdapter.MyViewHo
         public ImageView mImgIcon;
         public TextView mTvTitle;
         public ImageView mImgDelete;
-        public ImageView mImgDetail;
         public SwipeLayout mSwipeLayout;
+        RelativeLayout mRlItem;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             mTvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
             mImgIcon = (ImageView) itemView.findViewById(R.id.imgIcon);
             mImgDelete = (ImageView) itemView.findViewById(R.id.imgDel);
-            mImgDetail = (ImageView) itemView.findViewById(R.id.imgDetail);
             mSwipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe);
-
+            mRlItem = (RelativeLayout) itemView.findViewById(R.id.rl_item_content);
         }
     }
 }

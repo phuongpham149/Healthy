@@ -88,7 +88,7 @@ public class HomeInfoHospitalAdapter extends RecyclerView.Adapter<HomeInfoHospit
         holder.mRlContentItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.itemDetailClick(position);
+                mListener.itemDetailClick(mHospitals.get(position).getId());
             }
         });
     }

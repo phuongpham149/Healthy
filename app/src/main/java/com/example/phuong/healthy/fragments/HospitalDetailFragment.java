@@ -1,14 +1,11 @@
 package com.example.phuong.healthy.fragments;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -21,7 +18,8 @@ import android.widget.Toast;
 import com.example.phuong.healthy.R;
 import com.example.phuong.healthy.databases.SqlLiteDbHelper;
 import com.example.phuong.healthy.eventBus.BusProvider;
-import com.example.phuong.healthy.eventBus.MesageEvent;
+import com.example.phuong.healthy.eventBus.MessageEvent;
+import com.example.phuong.healthy.eventBus.MessageNetworkEvent;
 import com.example.phuong.healthy.models.Hospital;
 import com.example.phuong.healthy.utils.Constant;
 import com.example.phuong.healthy.utils.TrackGPS;
@@ -130,7 +128,7 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
             gps.showSettingsAlert();
         }
 
-        if (isNetWork()) {
+        if (Constant.isNetWork(getContext())) {
             LatLng latlng = getRoomLocation(mAddress);
             longitudeDis = latlng.longitude;
             latitudeDis = latlng.latitude;
@@ -140,26 +138,26 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
     }
 
     @Subscribe
-    public void getMessageTurnOnGPS(MesageEvent message) {
-        Log.d("tag11", " 1 789"+message);
-        if (message.equals(Constant.TURN_ON_GPS)) {
+    public void getMessage(MessageEvent message) {
+        Log.d("tag11", " 1 789" + message.toString());
+        if (message.isCheck()) {
             longitude = gps.getLongitude();
             latitude = gps.getLatitude();
             Log.d("tag11", longitude + " 1 " + latitude);
         }
     }
 
-    public boolean isNetWork() {
-        ConnectivityManager cm =
-                (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
+    @Subscribe
+    public void getMessage(MessageNetworkEvent message) {
+        Log.d("tag11", " 1 78978 " + message.toString());
+        if (message.isTurnOn()) {
+            Log.d("tag111", " 1 2 3 ");
+        }
     }
 
     public void initData() {
         //Hospital hospital = new Hospital();
         Hospital hospital = mSqlLiteDbHelper.getHospitalDetail(idHospital);
-        Log.d("tag11", hospital.toString());
         mNameHospital.setText(hospital.getName());
         mPhoneHospital.setText(hospital.getPhone());
         mAddress = hospital.getAddress();
@@ -169,7 +167,7 @@ public class HospitalDetailFragment extends BaseFragment implements OnMapReadyCa
         if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
         } else {
-            if (isNetWork()) {
+            if (Constant.isNetWork(getContext())) {
                 LatLng mLatlng = getRoomLocation(mAddress);
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(mLatlng, 13));
                 CameraPosition mPosition = new CameraPosition.Builder()

@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.example.phuong.healthy.R;
 import com.example.phuong.healthy.eventBus.BusProvider;
-import com.example.phuong.healthy.utils.Constant;
+import com.example.phuong.healthy.eventBus.MessageEvent;
 
 /**
  * Created by phuong on 12/01/2017.
@@ -16,9 +16,11 @@ import com.example.phuong.healthy.utils.Constant;
 public class TurnOnGpsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        if(intent.getAction().equals(context.getString(R.string.turn_on_gps))){
+        if (intent.getAction().equals(context.getString(R.string.turn_on_gps))) {
             BusProvider.getInstance().register(context);
-            BusProvider.getInstance().post(Constant.TURN_ON_GPS);
+            Log.d("tag11", "turn on gps");
+            MessageEvent messageEvent = new MessageEvent(true);
+            BusProvider.getInstance().post(messageEvent);
         }
     }
 }
